@@ -1,12 +1,9 @@
-Github containing the codes used by V. Rivet, R. Capranico and P. Rongieras for
-their master's thesis called "Analysis of longitudinal data based on
-semi-Markovian models", under the supervision of M. Olteanu (2024-2025).
+# Analysis of longitudinal data based on semi-Markovian models
 
-To access to the functions built:
--Functions.R
+## Master's thesis by V. Rivet, R. Capranico and P. Rongieras, under the supervision of M. Olteanu (2024-2025).
 
-To access to the simulations and tests performed:
--Simulations and tests.R
+This master thesis studies how to compare the professional trajectories of individuals by modeling them with semi-Markov processes. These models help describe the changes in job status over time, for example moving from studying to employment, but also how long people remain in each state. The analysis of longitudinal data is essential to understand how people move through different states of employment over time. It can give insights into the stability or variability of job situations, but also on general trends, such as inequality of access to jobs depending on social characteristics. By modeling the sequence of transitions and the time spent in each state, we can bring out differences between groups that might not be visible with less complex statistical techniques. This is especially important in fields such as sociology, economics, or public policy, where understanding long-term employment trends helps choose the right measures to take. Our goal is to compare the career path of two groups, for example men and women, to determine whether they follow similar patterns. To do this, we use a statistical technique called the likelihood ratio test, which checks whether they share the same parameters of a semi-Markov process. The methodology is inspired by the article \textit{Two sample tests for Semi-Markov processes with parametric sojourn time distributions: an application in sensory analysis} by Frascolla et al. (2022). We use three statistical methods to compute the \(p\)-values: the asymptotic test, the parametric bootstrap, and the permutation test. These approaches are first tested on simulated data to assess their performance, and then applied to a real dataset recording the employment status of a sample of 16,040 individuals each month over 8 years. Our results show that the permutation test is the most robust, especially when sample sizes are small or when a trajectory involves many visited states.
 
-To access to the code recreating the graphs:
--Charts.R
+## Reference
+
+[Two sample tests for Semi-Markov processes with parametric sojourn time distributions: an application in sensory analysis} by Frascolla et al. (2022)](https://www.researchgate.net/publication/359516575_Two_sample_tests_for_Semi-Markov_processes_with_parametric_sojourn_time_distributions_an_application_in_sensory_analysis)
