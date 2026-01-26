@@ -5,7 +5,7 @@ library(survminer)
 library(TraMineR)
 
 #### Data management 
-data <- read.table("C:/Users/rapha/Desktop/Mémoire/donnees.txt", 
+data <- read.table("C:/Users/paulr/Documents/M1 Dauphine/S1/mémoire/données/donnees.txt", 
                    header = TRUE,
                    sep = "\t",
                    quote = "",
@@ -13,15 +13,40 @@ data <- read.table("C:/Users/rapha/Desktop/Mémoire/donnees.txt",
                    fill = TRUE,
                    stringsAsFactors = FALSE)
 
+library(dplyr)
+data <- data %>%
+  rename_with(
+    ~ sub("^c", "month", .x),
+    .cols = starts_with("c")
+  )
 
-sequence_cols <- paste0("c", 1:94)
+sequence_cols <- paste0("month", 1:94)
 seq_data <- seqdef(data[, sequence_cols], states = as.character(1:9),
                    labels = c("Permanent employment", "Fixed-term employment", "work-study programs", "Youth employment", "Agency work", "Unemployed", "Inactive", "Military service", "Studies"))
 
 # Distribution par temps
-seqdplot(seq_data, 
-         with.legend = FALSE,
-         cex.legend = 0.8)
+custom_colors <- c(
+  "cornflowerblue",    # 1: Permanent employment
+  "chartreuse2",      # 2: Fixed-term employment
+  "chocolate3", # 3: work-study programs
+  "darkorange", # 4: Youth employment
+  "yellow",    # 5: Agency work
+  "red2",      # 6: Unemployed
+  "palevioletred1",    # 7: Inactive
+  "orchid3",  # 8: Military service
+  "grey"       # 9: Studies
+)
+
+seqdplot(seq_data,
+         with.legend = TRUE, # La légende est utile si vous mettez des couleurs personnalisées
+         cex.legend = 0.5,
+         # Modification des axes et ajout des couleurs
+         xlab = "Time (month)",   # Étiquette de l'axe X
+         ylab = "Frequency",      # Étiquette de l'axe Y
+         # Spécifie les couleurs à utiliser pour les états
+         cpal = custom_colors,
+         legend.prop = 0.24
+)
 
 # Avec l'entropie on verifie la predictibilité des changements d'état
 
